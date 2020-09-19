@@ -1,0 +1,42 @@
+
+       [
+        {
+            
+            "name": "Superman",
+            "strength": 9000,
+            "durability": 9000,
+            "speed": 9000,
+            "power_level":9500,
+            "fighting_skill":6000,
+            "xfactor": 2000,
+            "alignment": "Hero",
+            "universe": "DC",
+            "image_url": ""
+        },
+        {
+          
+          "name": "Wonder Woman",
+          "strength": 8500,
+          "durability": 8500,
+          "speed": 5000,
+          "power_level": 8000,
+          "fighting_skill": 7000,
+          "xfactor": 3000,
+          "alignment": "Hero",
+          "universe": "DC",
+          "image_url": "placeholder"
+        },
+        {
+                    "name": "Green Lantern",
+          "strength": 7000,
+          "durability": 8000,
+          "speed": 7500,
+          "power_level": 9000,
+          "fighting_skill": 7000,
+          "xfactor": 5000,
+          "alignment": "Hero",
+          "universe": "DC",
+          "image_url": "placeholder"
+        }
+    ]
+    
