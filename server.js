@@ -222,6 +222,6 @@ app.delete("/api/characters/:id", async (request, response) => {
 
 // Starting the server
 const port = process.env.PORT ? process.env.PORT : 3005;
-app.listen(3005, () => {
+app.listen(port, () => {
   console.log("CHARACTERS API STARTED!");
 });
