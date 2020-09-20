@@ -97,6 +97,13 @@ app.post("/api/characters", async (request, response) => {
     return;
   }
 
+   
+    const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name)
+    if (doesCharacterAlreadyExist){
+      response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
+      return;
+    }
+  
   //validate data types of properties
   //numbers need to be greater than 0
   //strings should not be empty except image url
@@ -181,6 +188,12 @@ app.put("/api/characters/:id", async (request, response) => {
     return;
   }
 
+  const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name)
+  if (doesCharacterAlreadyExist){
+    response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
+    return;
+  }
+
   const characterQuery = {
     _id: new ObjectId(characterId),
   };
@@ -225,3 +238,23 @@ const port = process.env.PORT ? process.env.PORT : 3005;
 app.listen(port, () => {
   console.log("CHARACTERS API STARTED!");
 });
+
+async function  doesCharacterAlreadyExist(name) {
+  const query={name:name};
+try {
+  const existingCharacter = await dataAccessLayer.findOne(query);
+  if (existingCharacter === "No Document Found!"){
+    return false;
+  }
+  else{
+    return true;
+  }
+} catch (error) {
+  throw error;
+  
+}
+ 
+
+}
+
+
