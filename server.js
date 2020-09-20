@@ -181,7 +181,7 @@ app.put("/api/characters/:id", async (request, response) => {
     return;
   }
 
-  const productQuery = {
+  const characterQuery = {
     _id: new ObjectId(characterId),
   };
 
