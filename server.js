@@ -98,11 +98,11 @@ app.post("/api/characters", async (request, response) => {
   }
 
    
-    const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name)
-    if (doesCharacterAlreadyExist){
-      response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
-      return;
-    }
+    // const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name)
+    // if (doesCharacterAlreadyExist){
+    //   response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
+    //   return;
+    // }
   
   //validate data types of properties
   //numbers need to be greater than 0
@@ -187,12 +187,14 @@ app.put("/api/characters/:id", async (request, response) => {
     response.status(400).send(`CharacterID ${characterId} is incorrect.`);
     return;
   }
-
-  const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name)
-  if (doesCharacterAlreadyExist){
-    response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
-    return;
-  }
+  // if (body.name){
+  //   const doesCharacterAlreadyExist = await doesCharacterAlreadyExist(body.name, characterId)
+  //   if (doesCharacterAlreadyExist){
+  //     response.status(400).send("BAD REQUEST.CHARACTER WITH NAME ALREADY EXISTS")
+  //     return;
+  //   }
+  // }
+ 
 
   const characterQuery = {
     _id: new ObjectId(characterId),
@@ -239,10 +241,15 @@ app.listen(port, () => {
   console.log("CHARACTERS API STARTED!");
 });
 
-async function  doesCharacterAlreadyExist(name) {
+async function  doesCharacterAlreadyExist(name, characterId) {
   const query={name:name};
-try {
+  try {
   const existingCharacter = await dataAccessLayer.findOne(query);
+  if(existingCharacter && existingCharacter._id){
+  if(characterId && characterId===existingCharacter._id){
+  }
+
+  }
   if (existingCharacter === "No Document Found!"){
     return false;
   }
